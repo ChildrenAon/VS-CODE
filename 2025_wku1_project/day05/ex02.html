@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ex02 </title>
+</head>
+<body>
+    <textarea id="teinput" placeholder="입력해주세요" rows="10"></textarea> <!--텍스트 상자를 만들 수 있음(크기 조절 가능) -->
+    <button id="btnok">ok</button>
+    <button id="btnclear">clear</button>
+
+
+    <script>
+        const teinput = document.getelementbyid("teinput")
+        const btnok = document.getelementbyid("btnok")
+        const btnclear = document.getelementbyid("btnclear")
+
+        btnok.addEventlistener('click', ()=>{
+            console.log(teinput.value)
+        })
+        
+        btnclear.addEventlistener('click', ()=>{
+            teinput.value=''
+        })
+    </script>
+
+
+
+
+
+</body>
+</html>

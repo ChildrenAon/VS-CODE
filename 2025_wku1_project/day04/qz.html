@@ -1,0 +1,80 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>기차표 예약</h1>
+
+        <h2>출발역</h2>
+        <div id="Select-start">
+            <input type="radio" name = station value="서울"/><label>서울</label>  
+            <input type="radio" name = station value="천안"/><label>천안</label>  
+            <input type="radio" name = station value="세종"/><label>세종</label>  
+            <input type="radio" name = station value="익산"/><label>익산</label>    
+        </div>
+
+        <h2>도착역</h2>
+        <div>
+            <select id="Select-end">
+                <option>광주</option>
+                <option>목포</option>
+                <option>여수</option>
+            </select>
+        </div>
+
+        <button id="btn-submit">제출</button>
+        
+        <p id="txt-result">결과: </p>
+
+        <script>
+            var Selectstart = document.getElementById("Select-start")
+            var Selectend = document.getElementById("Select-end")
+            var btnsubmit = document.getElementById("btn-submit")
+            var txtresult = document.getElementById("txt-result")
+
+            btnsubmit.addEventListener('click', ()=>{
+
+                var selectobj = document.querySelector("input[name='station']:checked")
+
+                console.log(selectobj.value)
+                console.log(Selectend.value)
+
+            
+            txtresult.innerText = "출발역: " + selectobj.value + " 도착역: " + Selectend.value
+        })
+        </script>
+
+
+
+    </body>
+    </html>
+
+<!-- 나의 실수 리스트 (수정 및 보완)
+1. .value 속성은 <div>가 아닌 <input> 같은 입력 요소에 있습니다.
+document.getElementById("Select-start")로 <div>를 선택한 뒤 .value를 읽으려고 해서 undefined가 발생했습니다.
+
+.value 속성은 사용자가 값을 선택하거나 입력할 수 있는 <input>, <select>, <textarea> 같은 태그에만 존재하며, <div>나 <p> 같은 콘텐츠 컨테이너 태그에는 없습니다.
+
+2. 라디오 버튼은 name으로 묶어야 '하나만' 선택됩니다.
+HTML에서 여러 개의 <input type="radio">를 동일한 name 속성으로 묶어주어야 브라우저가 이들을 '하나의 그룹'으로 인식하고, 그중 하나만 선택할 수 있게 해줍니다.
+
+또한, 이렇게 그룹으로 묶어주어야 JavaScript의 querySelector("input[name='station']:checked")를 통해 **'그 그룹 내에서 체크된 항목'**을 정확히 찾아낼 수 있습니다.
+
+3. HTML 태그는 정해진 규칙을 따라야 합니다.
+<option> 태그 안에 type="radio"와 같은, 해당 태그가 지원하지 않는 속성을 사용할 수 없습니다.
+
+<optiond>처럼 존재하지 않는 태그 이름을 사용하면 안 됩니다. 항상 표준 HTML 태그와 속성 규칙을 지켜야 합니다.
+
+4. .innerText는 내용을 '덮어씁니다'.
+innerText는 '한 줄만 사용 가능한' 것이 아니라, **호출할 때마다 해당 요소의 내용을 완전히 새로운 내용으로 교체(덮어쓰기)**합니다.
+
+따라서 출발역과 도착역을 모두 표시하려면, "출발역: " + startValue + ", 도착역: " + endValue 와 같이 하나의 문자열로 합쳐서 innerText에 한 번만 할당해야 합니다.
+
+5. JavaScript 변수를 올바르게 사용해야 합니다.
+querySelector를 사용해 체크된 라디오 버튼을 찾아 selectedStartInput이라는 새로운 변수에 올바르게 저장했지만, 정작 값을 출력할 때는 예전에 만들었던 잘못된 변수(Selectstart)를 사용하는 실수가 있었습니다.
+
+항상 내가 원하는 값을 담고 있는 정확한 변수 이름을 사용하는 것이 중요합니다.
+ -->

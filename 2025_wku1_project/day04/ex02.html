@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>check box</h1>
+
+    <div><input type="checkbox" id="check-agree"/> <label for="check-agree"> 동의</label></div>
+    
+    <p>결과: <span id ="txt-result"></span></p>
+    <button id = "btn-submit">제출</button>
+
+    <div>
+        <input type="checkbox" name="grp-1"/> <label>사과</label>
+        <input type="checkbox"name="grp-1"/> <label>바나나</label>
+    </div>
+
+    <script>
+        
+        var btnsubmit = document.getElementById("btn-submit")
+        var checkagree = document.getElementById("check-agree")
+
+        btnsubmit.addEventListener('click',()=>{
+            console.log(checkagree.checked)
+        })
+    </script>
+</body>
+</html>
+
+<!-- checkbox : 약관 동의처럼 체크 가능한 것(다중 체크 가능) / 
+span : 형광펜처럼 내용을 제어할 수 있는 역할(div랑은 범위가 다름)  -->
