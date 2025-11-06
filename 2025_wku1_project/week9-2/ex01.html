@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-2주차</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-color: black;
+            color: white;
+        }
+
+        .box{
+            width: 64px;
+            height: 64px;
+            background-color: blue;
+        }
+
+        @keyframes move {
+            from {transform: translate(0px, 0px);}
+            to {transform: translate(0px, 300px);}
+        }
+
+        @keyframes rotation {
+            from {transform: rotate(0deg);}
+            to {transform : rotate(360deg);}
+        }
+
+        @keyframes mov-rot{
+            from {transform: translate(50px, 0px) rotate(0deg) scale(0)}
+            to {transform: translate(100px, 500px) rotate(360deg) scale(3)}
+        }
+    </style>
+</head>
+<body>
+    <div class="box" style="
+        animation-name : move;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: 5;
+        animation-direction: alternate;
+        animation-fill-mode: backwards;
+        ">
+
+    </div>
+
+    <div class="box" style="position: relative; left : 0px; top:0px; background-color: red;">    </div>
+    
+    <div class="box" style="
+        background-color: white;
+        transform: translate(200, 200);
+        animation: rotation;
+        animation-iteration-count: 100;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        ">
+    </div>
+
+    <div class="box" style="
+    background-color: green;
+    animation-name: mov-rot;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate">
+
+    </div>
+</html>
