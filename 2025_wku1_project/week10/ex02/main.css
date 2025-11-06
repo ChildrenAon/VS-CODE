@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'KorailDdonggeunGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicLight.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KorailDdonggeunGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicMedium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KorailDdonggeunGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-color: blue;
+    color: white;
+    font-family: 'KorailDdonggeunGothic';
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.Korail-font{
+    font-size: 64px;
+}
