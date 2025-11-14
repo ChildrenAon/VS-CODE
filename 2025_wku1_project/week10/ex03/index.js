@@ -3,7 +3,7 @@ export default async function main(){
     const menuitems = document.querySelectorAll(".menu-item");
     let currentIndex = 0;
 
-    console.log(menuitems)
+    console.log(menuitems) 
 
     menuitems[currentIndex].classList.add("select")
 
