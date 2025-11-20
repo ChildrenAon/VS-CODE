@@ -51,3 +51,7 @@ footer {
      background-color: darkorange;
 
 }
+
+.hide {
+    display: none;
+}

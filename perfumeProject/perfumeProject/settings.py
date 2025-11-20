@@ -129,9 +129,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 웹에서 static 파일을 부를 때 사용할 URL (기본값)
 STATIC_URL = 'static/'
 
-# Django가 '로컬 이미지' 등 static 파일을 찾을 실제 폴더 경로 설정
-# 우리는 프로젝트 루트(manage.py가 있는 곳)에 'static' 폴더를 만들어 쓸 것입니다.
-import os
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
