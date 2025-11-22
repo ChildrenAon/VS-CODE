@@ -8,7 +8,7 @@
     "special_notes": "칼라브리아 베르가못, 다마스커스 로즈, 화이트머스크",
     "promotion_price_info": "128,000원",
     "options": ["30ml", "50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -20,7 +20,7 @@
     "special_notes": "피오니, 프리지아, 로즈, 시더우드",
     "promotion_price_info": "115,000원",
     "options": ["30ml", "50ml", "75ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -32,7 +32,7 @@
     "special_notes": "프리지아, 튤립, 우디 노트",
     "promotion_price_info": "198,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -44,7 +44,7 @@
     "special_notes": "베르가못, 리치, 로즈, 머스크",
     "promotion_price_info": "185,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -56,7 +56,7 @@
     "special_notes": "자몽, 로즈, 머스크",
     "promotion_price_info": "165,000원",
     "options": ["35ml", "50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -68,7 +68,7 @@
     "special_notes": "라임, 바질, 우드",
     "promotion_price_info": "120,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -80,7 +80,7 @@
     "special_notes": "베르가못, 오렌지, 레몬, 자스민, 앰버",
     "promotion_price_info": "290,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -92,7 +92,7 @@
     "special_notes": "바질, 레몬, 로즈, 인센스",
     "promotion_price_info": "135,000원",
     "options": ["30ml", "75ml", "150ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -104,7 +104,7 @@
     "special_notes": "블랙커런트, 오렌지, 민트, 아이티 베티버",
     "promotion_price_info": "125,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -116,7 +116,7 @@
     "special_notes": "오렌지, 레몬, 민트",
     "promotion_price_info": "110,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -128,7 +128,7 @@
     "special_notes": "딸기, 자스민, 바닐라",
     "promotion_price_info": "98,000원",
     "options": ["30ml", "50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -140,7 +140,7 @@
     "special_notes": "페어(배), 멜론, 장미, 머스크",
     "promotion_price_info": "120,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -152,7 +152,7 @@
     "special_notes": "로즈, 블랙커런트, 오렌지, 머스크",
     "promotion_price_info": "185,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -164,7 +164,7 @@
     "special_notes": "무화과, 코코넛, 시더우드",
     "promotion_price_info": "185,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -176,7 +176,7 @@
     "special_notes": "피치, 오렌지, 꼬냑, 우드, 바닐라",
     "promotion_price_info": "380,000원",
     "options": ["50ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -188,7 +188,7 @@
     "special_notes": "장미나무, 편백가지, 백단향, 화이트 머스크",
     "promotion_price_info": "185,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -200,7 +200,7 @@
     "special_notes": "레몬, 페퍼, 인센스, 바닐라",
     "promotion_price_info": "198,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -212,7 +212,7 @@
     "special_notes": "아가우드, 샌달우드, 바닐라, 사천 페퍼",
     "promotion_price_info": "295,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -224,7 +224,7 @@
     "special_notes": "핑크페퍼, 럼, 타바코 리프",
     "promotion_price_info": "135,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -236,7 +236,7 @@
     "special_notes": "암브레트(사향냄새), 씨 솔트, 세이지",
     "promotion_price_info": "120,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -248,7 +248,7 @@
     "special_notes": "바닐라, 벤조인, 라다넘",
     "promotion_price_info": "240,000원",
     "options": ["70ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -260,7 +260,7 @@
     "special_notes": "바닐라, 시나몬, 머스크",
     "promotion_price_info": "270,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -272,7 +272,7 @@
     "special_notes": "자몽, 로즈, 패출리(허브), 통카빈",
     "promotion_price_info": "180,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -284,7 +284,7 @@
     "special_notes": "바닐라, 허브, 스파이스",
     "promotion_price_info": "170,000원",
     "options": ["50ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -296,7 +296,7 @@
     "special_notes": "토바코, 스파이스, 코코아, 바닐라",
     "promotion_price_info": "295,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -308,7 +308,7 @@
     "special_notes": "무화과, 코코넛, 그린노트, 우드",
     "promotion_price_info": "185,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -320,7 +320,7 @@
     "special_notes": "유자, 바질, 민트, 로즈마리, 우드",
     "promotion_price_info": "125,000원",
     "options": ["50ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -332,7 +332,7 @@
     "special_notes": "바질, 자스민, 패츌리",
     "promotion_price_info": "270,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -344,7 +344,7 @@
     "special_notes": "히노끼, 유자, 넛멕, 프랑킨센스",
     "promotion_price_info": "59,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -356,7 +356,7 @@
     "special_notes": "자몽, 망고, 토마토, 오렌지, 랍다넘",
     "promotion_price_info": "110,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -368,7 +368,7 @@
     "special_notes": "라임, 베르가못, 자스민, 로즈마리, 머스크",
     "promotion_price_info": "95,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -380,7 +380,7 @@
     "special_notes": "아쿠아틱 어코드, 알데하이드, 코리앤더, 해초",
     "promotion_price_info": "135,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -392,7 +392,7 @@
     "special_notes": "탄젤로, 라벤더, 클라리세이지, 이끼",
     "promotion_price_info": "75,000원",
     "options": ["75ml", "125ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -404,7 +404,7 @@
     "special_notes": "파츌리, 우디어코드, 바다어코드, 앰버",
     "promotion_price_info": "120,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -416,7 +416,7 @@
     "special_notes": "베르가못, 자몽, 바질, 머스크, 페퍼",
     "promotion_price_info": "95,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -428,7 +428,7 @@
     "special_notes": "오렌지, 코코아, 바닐라",
     "promotion_price_info": "150,000원",
     "options": ["50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -440,7 +440,7 @@
     "special_notes": "페퍼, 커피, 통카빈, 바닐라",
     "promotion_price_info": "135,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -452,7 +452,7 @@
     "special_notes": "진저, 로스티드 헤이즐넛, 통카빈",
     "promotion_price_info": "125,000원",
     "options": ["30ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -464,7 +464,7 @@
     "special_notes": "배, 커피, 슈가 바닐라",
     "promotion_price_info": "145,000원",
     "options": ["30ml", "50ml", "90ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   },
   {
@@ -476,7 +476,7 @@
     "special_notes": "베르가못, 라벤더, 코코넛, 크림, 머스크",
     "promotion_price_info": "65,000원",
     "options": ["30ml", "50ml", "100ml"],
-    "main_image_filename": "perfume_main.jpg",
+    "img": "perfume_main.jpg",
     "detail_image_filename": "perfume_detail.jpg"
   }
 ]
