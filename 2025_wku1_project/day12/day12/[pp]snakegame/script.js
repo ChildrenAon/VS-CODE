@@ -93,6 +93,9 @@ function restartGame() {
     tailLength = 2;
     score = 0;
     document.getElementById('score').innerText = score;
+    
+    speed = 7; // 전역 변수 speed를 초기값 (7)로 재설정
+
     isGameOverFlag = false;
     
     restartBtn.style.display = "none";
@@ -194,7 +197,7 @@ function checkAppleCollision() {
         // ★ 속도 증가 로직 + 알림창 띄우기
         // 5점마다 속도 증가 (최대 속도 제한 20)
         if (score % 5 === 0 && speed < 20) {
-            speed += 1; 
+            speed += 10; 
             showSpeedMessage(); // 알림 함수 호출!
         }
     }
