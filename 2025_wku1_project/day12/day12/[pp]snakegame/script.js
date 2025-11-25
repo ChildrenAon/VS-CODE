@@ -94,7 +94,7 @@ function restartGame() {
     score = 0;
     document.getElementById('score').innerText = score;
     
-    speed = 7; // 전역 변수 speed를 초기값 (7)로 재설정
+    speed = 7;
 
     isGameOverFlag = false;
     
