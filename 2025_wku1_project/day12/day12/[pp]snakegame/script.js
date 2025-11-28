@@ -1,7 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const restartBtn = document.getElementById("restartBtn");
-const speedMsg = document.getElementById("speedMsg"); // 속도 알림창
+const speedMsg = document.getElementById("speedMsg"); 
+const mineMsg = document.getElementById("mineMsg");
 
 // --- 게임 설정 ---
 const tileCount = 20; 
@@ -20,6 +21,13 @@ let score = 0;
 let speed = 7;
 let isGameOverFlag = false;
 
+// ★ 빠른 키 입력 버그 방지용 변수 추가
+let canChangeDirection = true; 
+
+// 장애물 관련 변수
+let obstacles = []; 
+let obstacleTimer = null; 
+
 // 뱀 몸통 클래스
 class SnakePart {
     constructor(x, y) {
@@ -34,15 +42,21 @@ function drawGame() {
 
     changeSnakePosition();
     
+    // ★ 위치 이동이 끝났으므로 다시 키 입력을 받을 준비 완료
+    canChangeDirection = true; 
+    
     if (isGameOver()) {
         return;
     }
 
     clearScreen();
     drawCheckeredBackground();
+    
+    drawObstacles(); 
+    
     checkAppleCollision();
     drawApple();
-    drawSnake(); // ★ 진화하는 뱀 그리기
+    drawSnake(); 
 
     setTimeout(drawGame, 1000 / speed);
 }
@@ -63,14 +77,19 @@ function isGameOver() {
         }
     }
 
+    for (let obs of obstacles) {
+        if (obs.x === headX && obs.y === headY) {
+            gameOver = true;
+        }
+    }
+
     if (gameOver) {
         isGameOverFlag = true; 
+        clearInterval(obstacleTimer); 
 
         ctx.fillStyle = "white";
         ctx.font = "bold 50px Arial";
         ctx.textAlign = "center";
-        
-        // 그림자 효과 제거 (글씨 깨짐 방지)
         ctx.shadowBlur = 0; 
         
         ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
@@ -92,7 +111,14 @@ function restartGame() {
     snakeParts = [];
     tailLength = 2;
     score = 0;
-    speed = 7; // 속도 초기화
+    speed = 7; 
+    
+    canChangeDirection = true; // 입력 잠금 초기화
+    
+    obstacles = []; 
+    clearInterval(obstacleTimer);
+    startObstacleTimer(); 
+
     document.getElementById('score').innerText = score;
     isGameOverFlag = false;
     
@@ -101,18 +127,75 @@ function restartGame() {
     drawGame();
 }
 
+// 장애물 타이머
+function startObstacleTimer() {
+    obstacleTimer = setInterval(() => {
+        if (!isGameOverFlag && (velocityX !== 0 || velocityY !== 0)) { 
+            spawnObstacles(5);
+        }
+    }, 10000); 
+}
+
+// 장애물 생성
+function spawnObstacles(count) {
+    let generated = 0;
+    let attempts = 0; 
+
+    while (generated < count && attempts < 100) {
+        let rx = Math.floor(Math.random() * tileCount);
+        let ry = Math.floor(Math.random() * tileCount);
+
+        if (isValidPosition(rx, ry)) {
+            obstacles.push({ x: rx, y: ry });
+            generated++;
+        }
+        attempts++;
+    }
+    
+    if (generated > 0) {
+        showMineMessage();
+    }
+}
+
+// 지뢰 메시지 표시
+function showMineMessage() {
+    mineMsg.classList.add("show");
+    setTimeout(() => {
+        mineMsg.classList.remove("show");
+    }, 1500); 
+}
+
+// 위치 유효성 검사
+function isValidPosition(x, y) {
+    if (x === headX && y === headY) return false;
+
+    for (let part of snakeParts) {
+        if (part.x === x && part.y === y) return false;
+    }
+
+    if (x === appleX && y === appleY) return false;
+
+    for (let obs of obstacles) {
+        if (obs.x === x && obs.y === y) return false;
+    }
+
+    const distance = Math.abs(x - headX) + Math.abs(y - headY);
+    if (distance <= 5) return false;
+
+    return true;
+}
+
 // 3. 화면 지우기
 function clearScreen() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-// 4. 체크무늬 배경
+// 4. 배경
 function drawCheckeredBackground() {
     const color1 = "#AAD751"; 
     const color2 = "#A2D149"; 
 
-    // 배경 그릴 땐 그림자 효과 끄기
     ctx.shadowBlur = 0;
 
     for (let i = 0; i < tileCount; i++) {
@@ -123,47 +206,40 @@ function drawCheckeredBackground() {
     }
 }
 
-// 5. ★ [핵심] 성장형 뱀 그리기
+// 5. 뱀 그리기
 function drawSnake() {
     snakeParts.push(new SnakePart(headX, headY));
     while (snakeParts.length > tailLength) {
         snakeParts.shift();
     }
 
-    // --- 단계별 스킨 설정 ---
-    let snakeColor = "#4674E9"; // 기본 파랑
-    let snakeThickness = tileSize - 4; // 기본 두께
-    let glowColor = "transparent"; // 기본은 발광 없음
+    let snakeColor = "#4674E9"; 
+    let snakeThickness = tileSize - 4; 
+    let glowColor = "transparent"; 
     let glowAmount = 0;
 
     if (score < 2) {
-        // [1단계: 아기 지렁이]
-        snakeColor = "#FFB6C1"; // 분홍색
-        snakeThickness = tileSize - 8; // 작고 얇음
+        snakeColor = "#FFB6C1"; 
+        snakeThickness = tileSize - 8; 
     } else if (score < 4) {
-        // [2단계: 일반 뱀]
-        snakeColor = "#4674E9"; // 파란색
-        snakeThickness = tileSize - 4; // 보통
+        snakeColor = "#4674E9"; 
+        snakeThickness = tileSize - 4; 
     } else if (score < 6) {
-        // [3단계: 숲의 아나콘다]
-        snakeColor = "#228B22"; // 진한 녹색
-        snakeThickness = tileSize - 1; // 뚱뚱함 (거의 꽉 참)
+        snakeColor = "#228B22"; 
+        snakeThickness = tileSize - 1; 
     } else {
-        // [4단계: 황금 드래곤 (50점 이상)]
-        snakeColor = "#FFD700"; // 황금색
+        snakeColor = "#FFD700"; 
         snakeThickness = tileSize - 4;
-        glowColor = "orange"; // 번쩍이는 효과
+        glowColor = "orange"; 
         glowAmount = 20;
     }
 
     if (snakeParts.length > 0) {
-        // 스타일 적용
         ctx.strokeStyle = snakeColor;
         ctx.lineWidth = snakeThickness;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         
-        // 발광 효과 적용 (드래곤 모드일 때만 보임)
         ctx.shadowColor = glowColor;
         ctx.shadowBlur = glowAmount;
 
@@ -178,7 +254,6 @@ function drawSnake() {
         ctx.lineTo(headX * tileSize + tileSize/2, headY * tileSize + tileSize/2);
         ctx.stroke();
         
-        // 그림자 초기화 (다른 그림에 영향 안 주게)
         ctx.shadowBlur = 0;
     } 
 
@@ -192,26 +267,24 @@ function drawCircle(x, y, radius) {
 }
 
 function drawEyes() {
-    ctx.fillStyle = "white"; // 흰자위
+    ctx.fillStyle = "white"; 
     let centerX = headX * tileSize + tileSize / 2;
     let centerY = headY * tileSize + tileSize / 2;
     
     let eyeOffset = tileSize / 4;
     let eyeRadius = tileSize / 6;
 
-    // 아기 지렁이일 때는 눈도 작게
     if (score < 2) eyeRadius = tileSize / 8;
 
     drawCircle(centerX - eyeOffset, centerY - eyeOffset, eyeRadius); 
     drawCircle(centerX + eyeOffset, centerY - eyeOffset, eyeRadius); 
     
-    // --- 눈동자 색깔 변화 ---
     if (score >= 4 && score < 6) {
-        ctx.fillStyle = "red"; // 아나콘다: 빨간 눈 (사나움)
+        ctx.fillStyle = "red"; 
     } else if (score >= 6) {
-        ctx.fillStyle = "#8B0000"; // 드래곤: 진한 붉은색
+        ctx.fillStyle = "#8B0000"; 
     } else {
-        ctx.fillStyle = "black"; // 기본: 검은 눈
+        ctx.fillStyle = "black"; 
     }
     
     drawCircle(centerX - eyeOffset, centerY - eyeOffset, eyeRadius/2); 
@@ -228,24 +301,59 @@ function drawApple() {
     drawCircle(centerX, centerY, radius);
 }
 
-// 7. 사과 충돌 (속도 증가 기능 포함)
+// 장애물 그리기
+function drawObstacles() {
+    ctx.fillStyle = "#555555"; 
+    ctx.shadowBlur = 0;
+
+    for (let obs of obstacles) {
+        ctx.fillRect(obs.x * tileSize + 2, obs.y * tileSize + 2, tileSize - 4, tileSize - 4);
+        
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(obs.x * tileSize + 5, obs.y * tileSize + 5);
+        ctx.lineTo(obs.x * tileSize + tileSize - 5, obs.y * tileSize + tileSize - 5);
+        ctx.moveTo(obs.x * tileSize + tileSize - 5, obs.y * tileSize + 5);
+        ctx.lineTo(obs.x * tileSize + 5, obs.y * tileSize + tileSize - 5);
+        ctx.stroke();
+    }
+}
+
+// 7. 사과 충돌
 function checkAppleCollision() {
     if (appleX === headX && appleY === headY) {
-        appleX = Math.floor(Math.random() * tileCount);
-        appleY = Math.floor(Math.random() * tileCount);
+        
         tailLength++;
         score++;
         document.getElementById('score').innerText = score;
 
-        // 5점마다 속도 증가
         if (score % 5 === 0 && speed < 20) {
             speed += 1; 
             showSpeedMessage(); 
         }
+
+        let newAppleX, newAppleY;
+        while (true) {
+            newAppleX = Math.floor(Math.random() * tileCount);
+            newAppleY = Math.floor(Math.random() * tileCount);
+            
+            let isSafe = true;
+            for (let part of snakeParts) {
+                if (part.x === newAppleX && part.y === newAppleY) isSafe = false;
+            }
+            for (let obs of obstacles) {
+                if (obs.x === newAppleX && obs.y === newAppleY) isSafe = false;
+            }
+            if(newAppleX === headX && newAppleY === headY) isSafe = false;
+
+            if (isSafe) break;
+        }
+        appleX = newAppleX;
+        appleY = newAppleY;
     }
 }
 
-// 속도 알림창 표시 함수
 function showSpeedMessage() {
     speedMsg.classList.add("show");
     setTimeout(() => {
@@ -259,30 +367,49 @@ function changeSnakePosition() {
     headY += velocityY;
 }
 
-// 9. 키 입력
+// 9. 키 입력 (★ 수정된 부분)
 document.body.addEventListener('keydown', keyDown);
 
 function keyDown(event) {
+    // 키 입력이 오면 먼저 게임이 시작(장애물 타이머 가동)되었는지 확인
+    if (!obstacleTimer && !isGameOverFlag && (event.keyCode >= 37 && event.keyCode <= 40)) {
+        startObstacleTimer();
+    }
+
     if (isGameOverFlag) {
         if (event.keyCode == 13) restartGame();
         return; 
     }
 
-    if (event.keyCode == 38) {
+    // ★ 이미 이번 턴에 방향을 바꿨다면, 추가 입력 무시 (죽음 방지)
+    if (!canChangeDirection) return;
+
+    let directionChanged = false; // 실제로 방향키가 눌렸는지 확인
+
+    if (event.keyCode == 38) { // Up
         if (velocityY == 1) return;
         velocityX = 0; velocityY = -1;
+        directionChanged = true;
     }
-    if (event.keyCode == 40) {
+    if (event.keyCode == 40) { // Down
         if (velocityY == -1) return;
         velocityX = 0; velocityY = 1;
+        directionChanged = true;
     }
-    if (event.keyCode == 37) {
+    if (event.keyCode == 37) { // Left
         if (velocityX == 1) return;
         velocityX = -1; velocityY = 0;
+        directionChanged = true;
     }
-    if (event.keyCode == 39) {
+    if (event.keyCode == 39) { // Right
         if (velocityX == -1) return;
         velocityX = 1; velocityY = 0;
+        directionChanged = true;
+    }
+
+    // ★ 방향 전환에 성공했다면 다음 이동 전까지 입력을 잠금
+    if (directionChanged) {
+        canChangeDirection = false;
     }
 }
 

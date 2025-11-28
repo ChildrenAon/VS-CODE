@@ -11,14 +11,15 @@
     <div class="score-board">
         <div class="score-item">
             <span>🍎</span> <span id="score">0</span>
+            
+            <div id="speedMsg" class="speed-msg">속도 증가 +1</div>
+            
+            <div id="mineMsg" class="mine-msg">🚧 지뢰가 추가되었습니다.</div>
         </div>
     </div>
 
     <div class="game-container">
         <canvas id="gameCanvas" width="400" height="400"></canvas>
-        
-        <div id="speedMsg" class="speed-msg">속도 증가 +1</div>
-
         <button id="restartBtn" onclick="restartGame()">다시 시작하기</button>
     </div>
 

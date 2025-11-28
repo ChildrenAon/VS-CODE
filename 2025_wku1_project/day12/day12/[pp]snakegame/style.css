@@ -14,15 +14,22 @@ body {
 .score-board {
     display: flex;
     gap: 20px;
-    font-size: 25px; /* 점수 잘 보이게 키움 */
+    font-size: 25px;
     font-weight: bold;
     margin-bottom: 15px;
     background: rgba(0, 0, 0, 0.3);
     padding: 10px 25px;
     border-radius: 20px;
+    z-index: 10;
 }
 
-/* 게임 컨테이너 (버튼을 캔버스 위에 띄우기 위해 relative 설정) */
+.score-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .game-container {
     position: relative;
     display: flex;
@@ -33,14 +40,13 @@ body {
 canvas {
     box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
     border-radius: 10px;
-    background-color: black; /* 로딩 전 배경 */
+    background-color: black;
 }
 
-/* 다시 시작 버튼 스타일 */
 #restartBtn {
-    display: none; /* 평소엔 숨김 */
-    position: absolute; /* 캔버스 위에 둥둥 뜨게 함 */
-    top: 60%; /* 게임오버 글씨(50%)보다 약간 아래 */
+    display: none;
+    position: absolute;
+    top: 60%;
     padding: 15px 30px;
     font-size: 20px;
     font-weight: bold;
@@ -54,33 +60,58 @@ canvas {
 }
 
 #restartBtn:hover {
-    transform: scale(1.05); /* 마우스 올리면 살짝 커짐 */
+    transform: scale(1.05);
     background-color: #f0f0f0;
 }
 
-/* style.css 맨 아래에 추가하세요 */
-
+/* 속도 증가 메시지 (위치: -40px) */
 .speed-msg {
-    position: absolute; /* 캔버스 위에 겹치기 위해 절대 위치 사용 */
-    top: 30%;           /* 화면 약간 위쪽에 위치 */
+    position: absolute;
+    top: -40px; 
     left: 50%;
-    transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+    transform: translateX(-50%);
     
-    background-color: rgba(255, 255, 255, 0.9); /* 반투명 흰색 배경 */
-    color: #d32f2f;     /* 강렬한 빨간색 글씨 */
-    padding: 10px 20px;
-    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #d32f2f;
+    padding: 5px 15px;
+    border-radius: 15px;
     font-weight: bold;
-    font-size: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    white-space: nowrap;
     
-    opacity: 0;         /* 평소엔 안 보임 */
-    transition: opacity 0.3s ease-in-out; /* 부드럽게 나타나는 효과 */
-    pointer-events: none; /* 게임 플레이에 방해되지 않게 클릭 통과 */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s;
+    pointer-events: none;
 }
 
-/* 이 클래스가 붙으면 화면에 보임 */
 .speed-msg.show {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.2); /* 살짝 커지면서 등장 */
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* ★ 지뢰 추가 메시지 (위치: -80px, 속도 메시지보다 위) */
+.mine-msg {
+    position: absolute;
+    top: -80px; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    background-color: rgba(30, 30, 30, 0.9); /* 어두운 배경 */
+    color: #ffeb3b; /* 노란색 경고 글씨 */
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 14px; /* 글씨는 약간 작게 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s;
+    pointer-events: none;
+}
+
+.mine-msg.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
 }
