@@ -1,0 +1,52 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <h1>기차표 예약</h1>
+
+            <h2>출발역</h2>
+            <select id="Sel-start">
+                <option>서울</option>
+                <option>천안</option>
+                <option>세종</option>
+                <option>익산</option>
+            </select>
+
+            <h2>도착역</h2>
+            <div>
+                <select id="Sel-end">
+                    <option>광주</option>
+                    <option>목포</option>
+                    <option>여수</option>
+                </select>
+            </div>
+
+            <button id="btn-submit">제출</button>
+            
+            <p id="txt-result">결과: </p>
+
+            <script>
+                var Selstart = document.getElementById("Sel-start")
+                var Selend = document.getElementById("Sel-end")
+                var btnsubmit = document.getElementById("btn-submit")
+                var txtresult = document.getElementById("txt-result")
+
+                btnsubmit.addEventListener('click', ()=>{
+
+
+                    console.log(Selstart.value)
+                    console.log(Selend.value)
+
+                
+                txtresult.innerText = "출발역: " + Selstart.value + " 도착역: " + Selend.value
+            })
+            </script>
+
+        </body>
+        </html>
+
+

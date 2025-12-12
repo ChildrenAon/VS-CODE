@@ -16,8 +16,7 @@ export default async function main(){
 
 
     window.addEventListener("keydown", (e)=>{
-        // console.log(e.key) 
-
+        
         if(current_screen == 'main-menu-screen'){
             if (e.key == "ArrowUp") {
             menuitems[currentIndex].classList.remove('select')
