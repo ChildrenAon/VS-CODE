@@ -379,7 +379,7 @@ function keyDown(event) {
     if (!obstacleTimer && !isGameOverFlag && (event.keyCode >= 37 && event.keyCode <= 40)) {
         startObstacleTimer();
     }
-
+    // 마우스로 일일이 누를 필요없이 엔터키로 restartGame함수 실행, 키보드만으로 할 수 있게 작업
     if (isGameOverFlag) {
         if (event.keyCode == 13) restartGame();
         return; 
