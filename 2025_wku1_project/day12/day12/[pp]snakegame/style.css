@@ -90,19 +90,19 @@ canvas {
     transform: translateX(-50%) translateY(-5px);
 }
 
-/* ★ 지뢰 추가 메시지 (위치: -80px, 속도 메시지보다 위) */
+/* 지뢰 추가 메시지 */
 .mine-msg {
     position: absolute;
     top: -80px; 
     left: 50%;
     transform: translateX(-50%);
     
-    background-color: rgba(30, 30, 30, 0.9); /* 어두운 배경 */
-    color: #ffeb3b; /* 노란색 경고 글씨 */
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #ffeb3b; 
     padding: 5px 15px;
     border-radius: 15px;
     font-weight: bold;
-    font-size: 14px; /* 글씨는 약간 작게 */
+    font-size: 14px; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     white-space: nowrap;
     

@@ -4,7 +4,7 @@ const restartBtn = document.getElementById("restartBtn");
 const speedMsg = document.getElementById("speedMsg"); 
 const mineMsg = document.getElementById("mineMsg");
 
-// --- 게임 설정 ---
+// 게임 설정
 const tileCount = 20; 
 const tileSize = canvas.width / tileCount; 
 
@@ -21,14 +21,15 @@ let score = 0;
 let speed = 7;
 let isGameOverFlag = false;
 
-// ★ 빠른 키 입력 버그 방지용 변수 추가
+// 기존에 너무 빠르게 키 전환을 했을 때 죽는 버그를 인지
+// 한 번 누르면 한 칸 이동할 때까지 입력 방지를 통해 예외 처리 강화
 let canChangeDirection = true; 
 
-// 장애물 관련 변수
+// 장애물
 let obstacles = []; 
 let obstacleTimer = null; 
 
-// 뱀 몸통 클래스
+// 뱀 몸통
 class SnakePart {
     constructor(x, y) {
         this.x = x;
@@ -42,7 +43,7 @@ function drawGame() {
 
     changeSnakePosition();
     
-    // ★ 위치 이동이 끝났으므로 다시 키 입력을 받을 준비 완료
+    // 위치 이동이 끝났기 때문에 다른 키를 입력 가능하게 만듦
     canChangeDirection = true; 
     
     if (isGameOver()) {
@@ -61,7 +62,7 @@ function drawGame() {
     setTimeout(drawGame, 1000 / speed);
 }
 
-// 1. 게임 종료 처리
+// 죽었을 때 함수 정의
 function isGameOver() {
     let gameOver = false;
 
@@ -102,7 +103,7 @@ function isGameOver() {
     return gameOver;
 }
 
-// 2. 다시 시작
+// 다시 시작하는 기능 함수 정의
 function restartGame() {
     headX = 10;
     headY = 10;
@@ -113,7 +114,7 @@ function restartGame() {
     score = 0;
     speed = 7; 
     
-    canChangeDirection = true; // 입력 잠금 초기화
+    canChangeDirection = true;
     
     obstacles = []; 
     clearInterval(obstacleTimer);
@@ -127,7 +128,8 @@ function restartGame() {
     drawGame();
 }
 
-// 장애물 타이머
+// 장애물을 생성시키기 위한 시간 함수 정의
+// 세트인터벌 함수로 장애물 생성 시간 조정
 function startObstacleTimer() {
     obstacleTimer = setInterval(() => {
         if (!isGameOverFlag && (velocityX !== 0 || velocityY !== 0)) { 
@@ -157,7 +159,7 @@ function spawnObstacles(count) {
     }
 }
 
-// 지뢰 메시지 표시
+// 지뢰 메시지
 function showMineMessage() {
     mineMsg.classList.add("show");
     setTimeout(() => {
@@ -165,7 +167,8 @@ function showMineMessage() {
     }, 1500); 
 }
 
-// 위치 유효성 검사
+// 뱀의 머리 주변에 지뢰가 생성되지 않도록 하는 함수 지정
+// 가까우면 false를 반환해서 다시 생성하는 과정을 거침
 function isValidPosition(x, y) {
     if (x === headX && y === headY) return false;
 
@@ -185,13 +188,13 @@ function isValidPosition(x, y) {
     return true;
 }
 
-// 3. 화면 지우기
+// 화면 지우기
 function clearScreen() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-// 4. 배경
+// 배경 함수
 function drawCheckeredBackground() {
     const color1 = "#AAD751"; 
     const color2 = "#A2D149"; 
@@ -206,7 +209,7 @@ function drawCheckeredBackground() {
     }
 }
 
-// 5. 뱀 그리기
+//뱀 디자인
 function drawSnake() {
     snakeParts.push(new SnakePart(headX, headY));
     while (snakeParts.length > tailLength) {
@@ -218,6 +221,8 @@ function drawSnake() {
     let glowColor = "transparent"; 
     let glowAmount = 0;
 
+
+// if문으로 점수에 따라 디자인 변경되는 시스템
     if (score < 2) {
         snakeColor = "#FFB6C1"; 
         snakeThickness = tileSize - 8; 
@@ -291,7 +296,7 @@ function drawEyes() {
     drawCircle(centerX + eyeOffset, centerY - eyeOffset, eyeRadius/2); 
 }
 
-// 6. 사과 그리기
+// 사과
 function drawApple() {
     ctx.fillStyle = "#e7471d";
     let centerX = appleX * tileSize + tileSize / 2;
@@ -301,7 +306,7 @@ function drawApple() {
     drawCircle(centerX, centerY, radius);
 }
 
-// 장애물 그리기
+// 장애물 디자인
 function drawObstacles() {
     ctx.fillStyle = "#555555"; 
     ctx.shadowBlur = 0;
@@ -367,11 +372,10 @@ function changeSnakePosition() {
     headY += velocityY;
 }
 
-// 9. 키 입력 (★ 수정된 부분)
+// 9. 키 입력
 document.body.addEventListener('keydown', keyDown);
 
 function keyDown(event) {
-    // 키 입력이 오면 먼저 게임이 시작(장애물 타이머 가동)되었는지 확인
     if (!obstacleTimer && !isGameOverFlag && (event.keyCode >= 37 && event.keyCode <= 40)) {
         startObstacleTimer();
     }
@@ -381,33 +385,33 @@ function keyDown(event) {
         return; 
     }
 
-    // ★ 이미 이번 턴에 방향을 바꿨다면, 추가 입력 무시 (죽음 방지)
+    // 위에서 작성된 기능 중 연속적으로 키를 눌러도 죽지 않게끔 하는 예외처리 함수
     if (!canChangeDirection) return;
 
-    let directionChanged = false; // 실제로 방향키가 눌렸는지 확인
+    let directionChanged = false; // 확인
 
-    if (event.keyCode == 38) { // Up
+    if (event.keyCode == 38) { // 위
         if (velocityY == 1) return;
         velocityX = 0; velocityY = -1;
         directionChanged = true;
     }
-    if (event.keyCode == 40) { // Down
+    if (event.keyCode == 40) { // 아래
         if (velocityY == -1) return;
         velocityX = 0; velocityY = 1;
         directionChanged = true;
     }
-    if (event.keyCode == 37) { // Left
+    if (event.keyCode == 37) { // 왼
         if (velocityX == 1) return;
         velocityX = -1; velocityY = 0;
         directionChanged = true;
     }
-    if (event.keyCode == 39) { // Right
+    if (event.keyCode == 39) { // 오른
         if (velocityX == -1) return;
         velocityX = 1; velocityY = 0;
         directionChanged = true;
     }
 
-    // ★ 방향 전환에 성공했다면 다음 이동 전까지 입력을 잠금
+    // 만약에 방향 전환이 참이면 입력 방지 함수를 false로 만들어서 입력 받기
     if (directionChanged) {
         canChangeDirection = false;
     }
